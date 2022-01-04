@@ -1,10 +1,29 @@
-// d5e39c76dc63e9de2d8ff6d36428eb68;
-// https://api.themoviedb.org/3/movie/550?api_key=d5e39c76dc63e9de2d8ff6d36428eb68
+import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'components/HomePage';
+import Container from 'components/Container';
+import Navigation from 'components/Navigation';
+import MoviesPage from 'components/MoviesPage';
+import SearchMovies from 'components/SearchMovies/';
+import PageNotFound from 'components/PageNotFound';
 
 const App = () => {
-  return <HomePage />;
+  return (
+    <Container>
+      <Navigation />
+      <Switch>
+        <Route path="/" exact>
+          <MoviesPage />
+        </Route>
+        <Route path="/movies">
+          <SearchMovies />
+        </Route>
+
+        <Route>
+          <PageNotFound />
+        </Route>
+      </Switch>
+    </Container>
+  );
 };
 
 export default App;

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import s from './HomePage.module.css';
+import s from './Navigation.module.css';
 
-const HomePage = () => (
+const Navigation = () => (
   <nav>
     <NavLink exact to="/" className={s.link} activeClassName={s.activeLink}>
       Home
@@ -12,4 +12,4 @@ const HomePage = () => (
   </nav>
 );
 
-export default HomePage;
+export default Navigation;
