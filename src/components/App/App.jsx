@@ -1,16 +1,17 @@
 import { Switch, Route } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 
 import Container from 'components/Container';
 import Navigation from 'components/Navigation';
 // import MoviesList from 'components/MoviesList';
 import SearchMovies from 'components/SearchMovies/';
 import PageNotFound from 'components/PageNotFound';
-import HomeView from 'Views/HomeView';
+// import HomeView from 'Views/HomeView';
+import MovieDetailsView from 'Views/MovieDetailsView';
 
-// const HomeView = lazy(() =>
-//   import('../../Views/HomeView' /* webpackChunkName: "Home-page" */),
-// );
+const HomeView = lazy(() =>
+  import('../../Views/HomeView' /* webpackChunkName: "Home-page" */),
+);
 
 const App = () => {
   return (
@@ -21,8 +22,12 @@ const App = () => {
           <Route path="/" exact>
             <HomeView />
           </Route>
-          <Route path="/movies">
+          <Route path="/movies" exact>
             <SearchMovies />
+          </Route>
+
+          <Route path="/movies/:moviesId">
+            <MovieDetailsView />
           </Route>
 
           <Route>

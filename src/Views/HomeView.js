@@ -1,7 +1,7 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
 
 // import { useLocation } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 import * as Api from '../services/moviesApi';
 
@@ -17,47 +17,33 @@ export default function HomeView() {
   // const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    async function fetchMovies() {
-      try {
-        const moviesList = await Api.fetchPopulMovies();
-        if (moviesList.length < 1) {
-          toast.error(`Movies not found`);
+    Api.fetchPopulMovies()
+      .then(data => {
+        if (!data.results) {
+          console.error('error');
           return;
         }
-        setMovies(moviesList);
-      } catch (error) {
-        console.error('error');
-      }
-    }
-    fetchMovies();
-
-    // Api.fetchPopulMovies().then(setMovies);
+        setMovies(data.results);
+      })
+      .catch(error => console.log(error));
+    // async function fetchMovies() {
+    //   try {
+    //     const moviesList = await Api.fetchPopulMovies();
+    //     if (moviesList.length < 1) {
+    //       toast.error(`Movies not found`);
+    //       return;
+    //     }
+    //     setMovies(moviesList);
+    //   } catch (error) {
+    //     console.error('error');
+    //   }
+    // }
+    // fetchMovies();
   }, []);
-
-  // useEffect(() => {
-  //   Api.fetchPopulMoviesByPage(page).then(setMovies);
-  // }, [page]);
-
-  // useEffect(() => {
-  //   Api.fetchTrendingMoviesByPage(page)
-  //     .then(data => {
-  //       const { results, total_pages } = data;
-  //       if (!results) {
-  //         toast.error('No such results!');
-  //         return;
-  //       }
-  //       setMovies(results);
-  //       // setTotalPages(total_pages);
-  //     })
-  //     .catch(error => {
-  //       toast.error('No images');
-  //       console.log('error on catch: ', error);
-  //     });
-  // }, [page]);
 
   return (
     <div>
-      <Suspense fallback={<h1>Загрузка...</h1>}>
+      <Suspense fallback={<h1>Download...</h1>}>
         <MoviesList movies={movies} />
       </Suspense>
       <ToastContainer
