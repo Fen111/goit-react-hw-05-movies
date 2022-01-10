@@ -1,8 +1,15 @@
-.link {
-  text-decoration: none;
+.navContainer {
   padding: 10px;
   font-size: 18px;
   font-weight: 700;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 0 3px 3px 1px #bbb;
+  margin-bottom: 20px;
+}
+
+.link {
+  text-decoration: none;
+  margin-right: 10px;
   color: #000;
 }
 

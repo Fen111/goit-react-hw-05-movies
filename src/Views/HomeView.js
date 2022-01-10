@@ -1,6 +1,4 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
-
-// import { useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import * as Api from '../services/moviesApi';

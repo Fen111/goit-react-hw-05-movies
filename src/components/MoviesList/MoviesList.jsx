@@ -6,9 +6,9 @@ export default function MoviesList({ movies }) {
   // const match = useRouteMatch();
 
   return (
-    <ul>
+    <ul className={s.list}>
       {movies.map(movie => (
-        <li key={movie.id} className={s.list}>
+        <li key={movie.id} className={s.listItem}>
           <Link to={`/movies/${movie.id}`}>{movie.original_title}</Link>
         </li>
       ))}

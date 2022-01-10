@@ -1,0 +1,14 @@
+.linkContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+.link {
+  font-size: 24px;
+  font-weight: 700;
+  margin-right: 15px;
+  text-decoration: none;
+  color: #000;
+}
+.activeLink {
+  color: #e27629;
+}
