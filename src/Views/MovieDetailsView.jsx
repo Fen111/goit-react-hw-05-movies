@@ -2,6 +2,8 @@ import { useState, useEffect, Suspense } from 'react';
 import { useParams, NavLink, useRouteMatch, Route } from 'react-router-dom';
 import * as Api from '../services/moviesApi';
 import MovieDetailsElement from '../components/MovieDetailsElement';
+// import LoaderContainer from 'components/LoaderContainer';
+
 import Cast from 'components/Cast';
 // import Reviews from 'components/Reviews';
 
@@ -11,7 +13,6 @@ export default function MovieDetailsView() {
   const { moviesId } = useParams();
   const [movie, setMovie] = useState(null);
   const { url, path } = useRouteMatch();
-  console.log(path);
 
   useEffect(() => {
     Api.fetchMoviesDetails(moviesId)
@@ -41,7 +42,7 @@ export default function MovieDetailsView() {
               Reviews
             </NavLink>
           </div>
-          <Suspense fallback={<h1>Download...</h1>}>
+          <Suspense fallback={<p>Download...</p>}>
             <Route exact path={`${path}/cast`}>
               <Cast />
             </Route>

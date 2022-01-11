@@ -1,7 +1,9 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import LoaderContainer from 'components/LoaderContainer';
+
 import * as Api from '../services/moviesApi';
 
 import SearchMoviesForm from '../components/SearchMoviesForm/SearchMoviesForm';
@@ -14,7 +16,6 @@ export default function MoviesSearchView() {
   const location = useLocation();
   const currentPage = new URLSearchParams(location.search).get('page') ?? 1;
   const [page] = useState(currentPage);
-  //   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
   //   const isFirstRender = useRef(true);
@@ -38,29 +39,23 @@ export default function MoviesSearchView() {
 
   useEffect(() => {
     Api.fetchMoviesSearch(page, query)
-      .then(data => {
-        const { results } = data;
-        console.log(results);
+      .then(({ results }) => {
         if (!results) return;
-
         if (results.length > 1) setMovies(results);
       })
       .catch(error => {
-        toast.error(`No images by "${query}"!`);
+        console.error('error on catch: ', error);
       });
   }, [page, query]);
 
   const handleFormSubmit = input => {
-    if (query === input) {
-      return;
-    }
     setQuery(input);
   };
 
   return (
     <div>
       <SearchMoviesForm onSubmit={handleFormSubmit} />
-      <Suspense fallback={<h1>Download...</h1>}>
+      <Suspense fallback={<p>Download...</p>}>
         <MoviesList movies={movies} />
       </Suspense>
       <ToastContainer

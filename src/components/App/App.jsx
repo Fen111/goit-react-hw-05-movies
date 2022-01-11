@@ -6,16 +6,16 @@ import Navigation from 'components/Navigation';
 // import MoviesList from 'components/MoviesList';
 
 const HomeView = lazy(() =>
-  import('../../Views/HomeView' /* webpackChunkName: "Home-page" */),
+  import('../../views/HomeView' /* webpackChunkName: "Home-page" */),
 );
 const MovieDetailsView = lazy(() =>
   import(
-    '../../Views/MovieDetailsView' /* webpackChunkName: "MovieDetails-page" */
+    '../../views/MovieDetailsView' /* webpackChunkName: "MovieDetails-page" */
   ),
 );
 const MoviesSearchView = lazy(() =>
   import(
-    '../../Views/MoviesSearchView' /* webpackChunkName: "SearchMovies-page" */
+    '../../views/MoviesSearchView' /* webpackChunkName: "SearchMovies-page" */
   ),
 );
 

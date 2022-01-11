@@ -1,5 +1,6 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
+// import LoaderContainer from 'components/LoaderContainer';
 
 import * as Api from '../services/moviesApi';
 
@@ -8,11 +9,7 @@ const MoviesList = lazy(() =>
 );
 
 export default function HomeView() {
-  // const location = useLocation();
-  // const currentPage = new URLSearchParams(location.search).get('page') ?? 1;
   const [movies, setMovies] = useState([]);
-  // const [page] = useState(currentPage);
-  // const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     Api.fetchPopulMovies()
@@ -41,7 +38,7 @@ export default function HomeView() {
 
   return (
     <div>
-      <Suspense fallback={<h1>Download...</h1>}>
+      <Suspense fallback={<p>111</p>}>
         <MoviesList movies={movies} />
       </Suspense>
       <ToastContainer

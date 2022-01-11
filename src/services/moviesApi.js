@@ -79,7 +79,6 @@ export function fetchMoviesDetails(id) {
 
 export function fetchMoviesSearch(page, query) {
   const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=${page}&include_adult=false`;
-  console.log(url);
   return fetchWithErrorHandling(url, { hasQuery: true });
 }
 
