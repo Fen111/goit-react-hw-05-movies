@@ -1,4 +1,11 @@
+.link {
+  text-decoration: none;
+  color: #000;
+}
+
 .list {
+  display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -6,5 +13,27 @@
 
 .listItem {
   margin-bottom: 10px;
-  font-weight: 500;
+  margin-right: 15px;
+  max-width: 233px;
+}
+
+.title {
+  display: block;
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.img {
+  display: block;
+  height: 350px;
+  border-radius: 4px;
+}
+
+img:hover {
+  transform: scale(1.03);
+  cursor: zoom-in;
+
+  transition: transform 500ms;
 }

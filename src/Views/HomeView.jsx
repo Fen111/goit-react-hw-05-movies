@@ -13,27 +13,14 @@ export default function HomeView() {
 
   useEffect(() => {
     Api.fetchPopulMovies()
-      .then(data => {
-        if (!data.results) {
+      .then(({ results }) => {
+        if (!results) {
           console.error('error');
           return;
         }
-        setMovies(data.results);
+        setMovies(results);
       })
       .catch(error => console.log(error));
-    // async function fetchMovies() {
-    //   try {
-    //     const moviesList = await Api.fetchPopulMovies();
-    //     if (moviesList.length < 1) {
-    //       toast.error(`Movies not found`);
-    //       return;
-    //     }
-    //     setMovies(moviesList);
-    //   } catch (error) {
-    //     console.error('error');
-    //   }
-    // }
-    // fetchMovies();
   }, []);
 
   return (

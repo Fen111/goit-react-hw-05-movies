@@ -1,13 +1,11 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams, NavLink, useRouteMatch, Route } from 'react-router-dom';
-import * as Api from '../services/moviesApi';
-import MovieDetailsElement from '../components/MovieDetailsElement';
-// import LoaderContainer from 'components/LoaderContainer';
+import * as Api from '../../services/moviesApi';
+import MovieDetailsElement from '../../components/MovieDetailsElement';
+import Cast from '../Cast';
+import Reviews from '../Reviews';
 
-import Cast from 'components/Cast';
-// import Reviews from 'components/Reviews';
-
-import s from './style/MovieDetailsView.module.css';
+import s from './MovieDetailsView.module.css';
 
 export default function MovieDetailsView() {
   const { moviesId } = useParams();
@@ -42,13 +40,13 @@ export default function MovieDetailsView() {
               Reviews
             </NavLink>
           </div>
-          <Suspense fallback={<p>Download...</p>}>
+          <Suspense fallback={<div>Download...</div>}>
             <Route exact path={`${path}/cast`}>
               <Cast />
             </Route>
-            {/* <Route exact path={`${path}/rewiews`}>
+            <Route exact path={`${path}/reviews`}>
               <Reviews />
-            </Route> */}
+            </Route>
           </Suspense>
         </>
       )}
