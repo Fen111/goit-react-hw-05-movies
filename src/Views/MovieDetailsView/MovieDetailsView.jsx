@@ -16,29 +16,29 @@ import s from './MovieDetailsView.module.css';
 
 export default function MovieDetailsView() {
   const { moviesId } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [movies, setMovies] = useState(null);
   const { url, path } = useRouteMatch();
   const location = useLocation();
   const history = useHistory();
 
   useEffect(() => {
     Api.fetchMoviesDetails(moviesId)
-      .then(setMovie)
+      .then(setMovies)
       .catch(error => console.log(error));
   }, [moviesId]);
 
   const onGoBack = () => {
-    history.push(location.state.from);
+    history.push(location?.state?.from ?? '/movies');
   };
 
   return (
     <>
-      {movie && (
+      {movies && (
         <>
           <button type="button" onClick={onGoBack} className={s.button}>
             Go back
           </button>
-          <MovieDetailsElement movie={movie} />
+          <MovieDetailsElement movie={movies} />
           <div className={s.linkContainer}>
             <NavLink
               exact

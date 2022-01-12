@@ -25,7 +25,7 @@ export default function HomeView() {
 
   return (
     <div>
-      <Suspense fallback={<p>111</p>}>
+      <Suspense fallback={<p>Dowload...</p>}>
         <MoviesList movies={movies} />
       </Suspense>
       <ToastContainer
