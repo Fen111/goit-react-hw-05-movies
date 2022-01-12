@@ -12,7 +12,7 @@ export default function MovieDetailsElement({ movie }) {
       />
       <div>
         <h2>{original_title}</h2>
-        <p>User Score: {(vote_average * 100) / 10}%</p>
+        <p>User Score: {Math.round((vote_average * 100) / 10)}%</p>
         <h3>Overview</h3>
         <p>{overview}</p>
         <h3>Genres:</h3>

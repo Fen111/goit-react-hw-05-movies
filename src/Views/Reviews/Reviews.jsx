@@ -19,18 +19,15 @@ export default function Reviews() {
     <>
       {reviews.length > 0 ? (
         <ul className={s.list}>
-          {reviews.map(review => (
-            <li key={review.id} className={s.item}>
-              <p className={s.title}>
-                {review.author}
-                {/* `${review.created_at.slice(0, 10)}` */}
-              </p>
-              <p className={s.content}>{review.content}</p>
+          {reviews.map(({ id, author, content }) => (
+            <li key={id} className={s.item}>
+              <p className={s.title}>{author}</p>
+              <p className={s.content}>{content}</p>
             </li>
           ))}
         </ul>
       ) : (
-        <p>There are no reviews about this movie</p>
+        <p className={s.info}>!!!There are no reviews about this movie</p>
       )}
     </>
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import LoaderContainer from 'components/LoaderContainer';
 
@@ -18,29 +18,14 @@ export default function MoviesSearchView() {
   const [page] = useState(currentPage);
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
-  //   const isFirstRender = useRef(true);
-
-  //   useEffect(() => {
-  //     if (!query) return;
-  //     async function fetchMovies() {
-  //       try {
-  //         const movies = await Api.fetchMoviesSearch(query, currentPage);
-  //         if (movies.length < 1) {
-  //           toast.error(`Image ${query} not found`);
-  //           return;
-  //         }
-  //         setMovies(state => [...state, ...movies]);
-  //       } catch (e) {
-  //         console.error(e);
-  //       }
-  //     }
-  //     fetchMovies();
-  //   }, [query, currentPage]);
 
   useEffect(() => {
     Api.fetchMoviesSearch(page, query)
       .then(({ results }) => {
-        if (!results) return;
+        if (results.length < 1) {
+          toast.error('invalid request');
+          return;
+        }
         if (results.length > 1) setMovies(results);
       })
       .catch(error => {

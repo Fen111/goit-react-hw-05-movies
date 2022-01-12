@@ -20,21 +20,19 @@ export default function SearchMoviesFrom({ onSubmit }) {
   const handleFormInput = event => setQuery(event.target.value);
 
   return (
-    <>
-      <form onSubmit={onFormSubmit} className={s.form}>
+    <div className={s.searchbar}>
+      <form onSubmit={onFormSubmit} className={s.searchForm}>
         <input
           name="form-input"
           value={query}
           onChange={handleFormInput}
           type="text"
-          className={s.formInput}
+          className={s.searchFormInput}
           placeholder="Search for movies"
           autoComplete="on"
           autoFocus
         />
-        <button type="submit" className={s.button}>
-          Search
-        </button>
+        <button type="submit" className={s.searchFormButton} />
       </form>
       <ToastContainer
         position="top-right"
@@ -48,6 +46,6 @@ export default function SearchMoviesFrom({ onSubmit }) {
         draggable
         draggablePercent={60}
       />
-    </>
+    </div>
   );
 }

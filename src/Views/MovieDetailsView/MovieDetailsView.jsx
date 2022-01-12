@@ -1,5 +1,12 @@
 import { useState, useEffect, Suspense } from 'react';
-import { useParams, NavLink, useRouteMatch, Route } from 'react-router-dom';
+import {
+  useParams,
+  NavLink,
+  useRouteMatch,
+  Route,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
 import * as Api from '../../services/moviesApi';
 import MovieDetailsElement from '../../components/MovieDetailsElement';
 import Cast from '../Cast';
@@ -11,6 +18,8 @@ export default function MovieDetailsView() {
   const { moviesId } = useParams();
   const [movie, setMovie] = useState(null);
   const { url, path } = useRouteMatch();
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     Api.fetchMoviesDetails(moviesId)
@@ -18,10 +27,17 @@ export default function MovieDetailsView() {
       .catch(error => console.log(error));
   }, [moviesId]);
 
+  const onGoBack = () => {
+    history.push(location.state.from);
+  };
+
   return (
     <>
       {movie && (
         <>
+          <button type="button" onClick={onGoBack} className={s.button}>
+            Go back
+          </button>
           <MovieDetailsElement movie={movie} />
           <div className={s.linkContainer}>
             <NavLink
