@@ -3,7 +3,7 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'f6f92051b45422d9426f457ad6610127';
 
 async function fetchWithErrorHandling(url = '', params = {}) {
-  if (params.HasQuery) {
+  if (params.hasQuery) {
     const { data } = await axios.get(url, params);
     if (data.results.length === 0) {
       console.error('Not found by query');

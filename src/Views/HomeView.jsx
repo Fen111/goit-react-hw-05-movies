@@ -1,8 +1,7 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
-// import LoaderContainer from 'components/LoaderContainer';
 
-import * as Api from '../services/moviesApi';
+import * as api from '../services/moviesApi';
 
 const MoviesList = lazy(() =>
   import('../components/MoviesList' /* webpackChunkName: "Movies-list"*/),
@@ -12,7 +11,8 @@ export default function HomeView() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    Api.fetchPopulMovies()
+    api
+      .fetchPopulMovies()
       .then(({ results }) => {
         if (!results) {
           console.error('error');
@@ -25,7 +25,7 @@ export default function HomeView() {
 
   return (
     <div>
-      <Suspense fallback={<p>Dowload...</p>}>
+      <Suspense fallback={<p>Download...</p>}>
         <MoviesList movies={movies} />
       </Suspense>
       <ToastContainer

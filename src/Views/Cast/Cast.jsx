@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as Api from '../../services/moviesApi';
-import fotoDefault from '../../images/fotoDefault.webp';
+import photoDefault from '../../images/photoDefault.webp';
 import { BASE_IMG_SRC } from 'helpers/constants';
 
 import s from './Cast.module.css';
@@ -24,7 +24,7 @@ export default function Cast() {
           <div key={id} className={s.actorInfo}>
             <img
               className={s.img}
-              src={profile_path ? BASE_IMG_SRC + profile_path : fotoDefault}
+              src={profile_path ? BASE_IMG_SRC + profile_path : photoDefault}
               alt={name}
             />
             <h3 className={s.title}>{name}</h3>

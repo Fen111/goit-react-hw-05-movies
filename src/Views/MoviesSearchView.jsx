@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import LoaderContainer from 'components/LoaderContainer';
 
-import * as Api from '../services/moviesApi';
+import * as api from '../services/moviesApi';
 
 import SearchMoviesForm from '../components/SearchMoviesForm/SearchMoviesForm';
 
@@ -20,7 +20,8 @@ export default function MoviesSearchView() {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    Api.fetchMoviesSearch(page, query)
+    api
+      .fetchMoviesSearch(page, query)
       .then(({ results }) => {
         if (results.length < 1) {
           toast.error('invalid request');

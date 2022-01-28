@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import * as Api from '../../services/moviesApi';
+import * as api from '../../services/moviesApi';
 import s from './Reviews.module.css';
 
 export default function Reviews() {
@@ -8,7 +8,8 @@ export default function Reviews() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    Api.fetchMovieReviews(moviesId)
+    api
+      .fetchMovieReviews(moviesId)
       .then(({ results }) => {
         setReviews(results);
       })
